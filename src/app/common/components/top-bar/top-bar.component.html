@@ -1,0 +1,31 @@
+<div class="topbar">
+  <div class="logo-section">
+    <img src="../../../../assets//images/palng.jpeg" alt="PAL Logo" class="logo">
+    <img src="../../../../assets//images/maersk.jpeg" alt="MAERSK Logo" class="logo">
+  </div>
+  <div class="menu-icons">
+    <button mat-icon-button><mat-icon>grid_view</mat-icon></button>
+    <button mat-icon-button><mat-icon>view_agenda</mat-icon></button>
+  </div>
+  <div class="search-bar">
+    <mat-form-field>
+      <input matInput placeholder="Vessel" type="search">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="user-actions">
+    <button mat-icon-button><mat-icon>flash_on</mat-icon></button>
+    <button mat-icon-button><mat-icon>search</mat-icon></button>
+    <button mat-icon-button><mat-icon>notifications</mat-icon></button>
+    <button mat-icon-button><mat-icon>insert_chart</mat-icon></button>
+    <button mat-icon-button><mat-icon>chat</mat-icon></button>
+    <button mat-icon-button><mat-icon>more_horizx</mat-icon></button>
+    <button mat-icon-button class="user-avatar">CT</button>
+    <div>
+      <span class="user-info">{{loggedInUser}}</span>
+    </div>
+    <div>
+      <span class="user-info">{{tiemePeriod}}</span>
+    </div>
+  </div>
+</div>

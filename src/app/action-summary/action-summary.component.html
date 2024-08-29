@@ -1,0 +1,285 @@
+<div class="container-fluid action-summary mt-4">
+    <h2 class="mb-4">Action Summary</h2>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbsHeading; let last = last">
+            <ng-container *ngIf="!last">
+                <a [href]="breadcrumb.url">{{ breadcrumb.label }}</a>
+            </ng-container>
+            <ng-container *ngIf="last">
+                <span class="active" aria-current="page">{{ breadcrumb.label }}</span>
+            </ng-container>
+        </li>
+    </ol>
+
+    <div class="container">
+        <div class="btn-group mb-3">
+            <button type="button" class="btn btn-primary" [class.active]="activeTab === 'followup'"
+                (click)="setActiveTab('followup')">Followup Action</button>
+            <button type="button" class="btn btn-secondary" [class.active]="activeTab === 'workflow'"
+                (click)="setActiveTab('workflow')">Workflow Action</button>
+        </div>
+    </div>
+
+    <div *ngIf="activeTab === 'followup'">
+        <div class="card mb-3">
+            <form [formGroup]="form" class="row g-2 mb-4 align-items-center">
+                <div class="col-auto">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="officeVessel" id="office"
+                            value="office">
+                        <label class="form-check-label" for="office">Office</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="officeVessel" id="vessel"
+                            value="vessel">
+                        <label class="form-check-label" for="vessel">Vessel</label>
+                    </div>
+                </div>
+
+                <div class="col-auto">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="myVessel" formControlName="myVessel">
+                        <label class="form-check-label" for="myVessel">My Vessel</label>
+                    </div>
+                </div>
+
+                <div class="col-auto">
+                    <label for="date" class="form-label">Date</label>
+                    <select class="form-select" formControlName="date">
+                        <option *ngFor="let date of filterOptions?.date" [value]="date">{{ date }}</option>
+                    </select>
+                </div>
+
+                <div class="col-auto">
+                    <label for="reportType" class="form-label">Report Type</label>
+                    <select class="form-select" formControlName="reportType">
+                        <option *ngFor="let type of filterOptions?.reportTypes" [value]="type">{{ type }}</option>
+                    </select>
+                </div>
+
+                <div class="col-auto">
+                    <label for="action" class="form-label">Action</label>
+                    <select class="form-select" formControlName="action">
+                        <option *ngFor="let action of filterOptions?.actions" [value]="action">{{ action }}</option>
+                    </select>
+                </div>
+
+                <div class="col-auto">
+                    <label for="fromDate" class="form-label">From Date</label>
+                    <input type="date" class="form-control" formControlName="fromDate">
+                </div>
+
+                <div class="col-auto">
+                    <label for="toDate" class="form-label">To Date</label>
+                    <input type="date" class="form-control" formControlName="toDate">
+                </div>
+
+                <div class="col-auto icon-buttons">
+                    <button class="btn btn-primary" type="button" title="Search" (click)="onSearchFilter()">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div>
+                <div class="col-auto icon-buttons">
+                    <button class="btn btn-default" type="button" title="Filter" (click)="onFilter()">
+                        <mat-icon>filter_list</mat-icon>
+                    </button>
+                </div>
+                <div class="col-auto icon-buttons">
+                    <button class="btn btn-primary" type="button" title="Options" (click)="onOptions()">
+                        <mat-icon>tune</mat-icon>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbsActionSummary; let last = last">
+                <ng-container *ngIf="!last">
+                    <a [href]="breadcrumb.url">{{ breadcrumb.label }}</a>
+                </ng-container>
+                <ng-container *ngIf="last">
+                    <span class="active" aria-current="page">{{ breadcrumb.label }}</span>
+                </ng-container>
+            </li>
+        </ol>
+
+        <!-- Summary cards -->
+        <div class="row mb-0 text-center">
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <div class="status-container">
+                            <canvas #chartCanvas class="chart-canvas"></canvas>
+                            <div class="card-body">
+                                <div class="row row-cols-2 g-4">
+                                    <div class="col" *ngFor="let status of statuses">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <span class="status-label mb-2">{{ status.label }}</span>
+                                            <span class="badge rounded-pill" [ngClass]="'bg-' + status.type">
+                                                {{ status.count }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-3">Total Findings</h5>
+                        <span class="display-4">{{summary?.totalFindings.count}}</span>
+                        <div class="text-danger mt-2">
+                            <small>↑ 10% increase in findings YTD</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-3">Reports not Linked</h5>
+                        <span class="display-4">{{summary?.reportsNotLinked.count}}</span>
+                        <div class="text-success mt-2">
+                            <small>↓ 23% count decreased</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-3">Due in</h5>
+                        <span class="display-4">{{summary?.dueIn.count}}</span>
+                        <div class="text-danger mt-2">
+                            <small>↑ 550 count increasing yearly</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="records-count">
+                <span class="record-count">{{ tableData.data.length }} Records Found</span>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="searchField" (input)="onSearch($event)"
+                        placeholder="Search">
+                </div>
+                <div class="col-auto icon-buttons">
+                    <button class="btn btn-default" type="button" title="Search" (click)="onSearchFilter()">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div>
+                <div class="col-auto icon-buttons">
+                    <button class="btn btn-default" type="button" title="Filter" (click)="onFilter()">
+                        <mat-icon>filter_list</mat-icon>
+                    </button>
+                </div>
+                <div class="col-auto icon-buttons">
+                    <button class="btn btn-default" type="button" title="Options" (click)="onOptions()">
+                        <mat-icon>tune</mat-icon>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Data table -->
+            <table mat-table [dataSource]="tableData" matSort class="mat-elevation-z8">
+
+                <ng-container matColumnDef="select">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="toggleAllRows($event)" [checked]="isAllSelected()"
+                            indeterminate="indeterminate"> </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-checkbox (change)="toggleRow(row)" [checked]="isRowSelected(row)"></mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="vesselOffice">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Vessel/Office </th>
+                    <td mat-cell *matCellDef="let row"> {{row.vesselOffice}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="reportType">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Report Type </th>
+                    <td mat-cell *matCellDef="let row"> {{row.reportType}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="referenceNo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Reference No. </th>
+                    <td mat-cell *matCellDef="let row"> {{row.referenceNo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell *matCellDef="let row"> {{row.action}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actionDescription">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action Description </th>
+                    <td mat-cell *matCellDef="let row"> {{row.actionDescription}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="raisedOn">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Raised On </th>
+                    <td mat-cell *matCellDef="let row"> {{row.raisedOn}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="raisedBy">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Raised By </th>
+                    <td mat-cell *matCellDef="let row"> {{row.raisedBy}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dueDate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Due Date </th>
+                    <td mat-cell *matCellDef="let row"> {{row.dueDate}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="vesselRespondent">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Vessel Responspondent </th>
+                    <td mat-cell *matCellDef="let row"> {{row.vesselRespondent}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <div class="records-count">
+                <mat-paginator [pageSize]="itemsPerPage" [pageSizeOptions]="[5, 10, 20]"
+                    [length]="totalRecords"></mat-paginator>
+                <button mat-button (click)="previousPage()"
+                    [disabled]="paginator?.hasPreviousPage() === false">&lt;</button>
+                <button mat-button (click)="nextPage()" [disabled]="paginator?.hasNextPage() === false">&gt;</button>
+            </div>
+            
+            <!-- <div class="records-count">
+            <ng-container matColumnDef="filter">
+                <mat-header-cell *matHeaderCellDef> Filter By: </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <mat-radio-group aria-label="Select a priority" (ngModelChange)="applyFilter($event)">
+                        <mat-radio-button value="High">High</mat-radio-button>
+                        <mat-radio-button value="Medium">Medium</mat-radio-button>
+                        <mat-radio-button value="Low">Low</mat-radio-button>
+                    </mat-radio-group>
+                </mat-cell>
+             </ng-container>
+            </div> -->
+
+        </div>
+    </div>
+
+
+    <div *ngIf="activeTab === 'workflow'">
+        workflow works!!
+    </div>
+</div>
