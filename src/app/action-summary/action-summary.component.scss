@@ -1,0 +1,211 @@
+// .action-summary {
+//   padding: 16px;
+
+//   .container {
+//     display: flex;
+//     justify-content: center;
+//     padding: 20px;
+//   }
+
+//   .btn-group {
+//     display: inline-flex;
+//   }
+
+//   .action-summary-title {
+//     font-size: 24px;
+//     font-weight: bold;
+//     margin-bottom: 16px;
+//   }
+
+//   .tab-toggle-group {
+//     margin-bottom: 16px;
+
+//     .tab-toggle {
+//       font-size: 16px;
+//       font-weight: 500;
+//       padding: 8px 16px;
+//       cursor: pointer;
+
+//       &.active {
+//         background-color: #007bff;
+//         color: white;
+//       }
+//     }
+//   }
+
+//   .form-container {
+//     .filter-row {
+//       display: flex;
+//       flex-wrap: wrap;
+//       gap: 16px;
+//     }
+
+//     .form-field {
+//       width: 100%;
+//     }
+
+//     .button-row {
+//       margin-top: 16px;
+//       display: flex;
+//       justify-content: flex-start;
+//       gap: 16px;
+
+//       .search-button {
+//         background-color: #007bff;
+//         color: white;
+//         border: none;
+//         padding: 8px 16px;
+
+//         &:hover {
+//           background-color: darken(#007bff, 10%);
+//         }
+//       }
+
+//       .clear-button {
+//         background-color: white;
+//         color: #007bff;
+//         border: 1px solid #007bff;
+//         padding: 8px 16px;
+
+//         &:hover {
+//           background-color: #007bff;
+//           color: white;
+//         }
+//       }
+//     }
+//   }
+
+//   .summary-cards {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     flex-wrap: nowrap;
+//     gap: 16px;
+//     margin-top: 16px;
+
+//     .mat-card {
+//       padding: 16px;
+//       flex: 1 1 auto;
+//       max-width: 250px;
+
+//       h5 {
+//         font-size: 16px;
+//         margin-bottom: 12px;
+//       }
+
+//       .status-summary,
+//       .total-findings,
+//       .reports-not-linked,
+//       .due-in {
+//         font-size: 16px;
+//         margin-top: 8px;
+//       }
+
+//       .doughnut-chart-container {
+//         width: 150px;
+//         height: 150px;
+//         margin-bottom: 12px;
+
+//         canvas {
+//           width: 100% !important;
+//           height: auto !important;
+//         }
+//       }
+//     }
+//   }
+
+
+
+//   .table-container {
+//     margin: 16px;
+//     border: 1px solid #ddd;
+//     border-radius: 4px;
+//     overflow: hidden;
+//   }
+
+//   .records-count {
+//     display: flex;
+//     align-items: center;
+//     padding: 8px 16px;
+//     border-bottom: 1px solid #ddd;
+//     background-color: #f5f5f5;
+//     font-size: 16px;
+//     font-weight: bold;
+//     justify-content: space-between;
+//   }
+
+//   .record-count {
+//     flex: 1;
+//   }
+
+//   .search-field {
+//     width: 200px;
+//   }
+
+
+//   .mat-header-cell {
+//     background-color: #f5f5f5;
+//     color: #333;
+//     font-weight: bold;
+//   }
+
+
+//   .paginator {
+//     margin-top: 16px;
+//     display: flex;
+//     justify-content: flex-end;
+//   }
+
+//   .workflow-tab {
+//     padding: 16px;
+//     font-size: 18px;
+//     background-color: #f8f9fa;
+//     border-radius: 4px;
+//   }
+
+//   .status-container {
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-start;
+
+//     .chart-canvas {
+//       flex: 0 0 150px;
+//       max-width: 150px;
+//       max-height: 150px;
+//     }
+
+//     .status-summary {
+//       max-width: 300px;
+//       max-height: 150px;
+//     }
+
+//     .status-label {
+//       font-size: 16px;
+//     }
+
+//     .badge {
+//       font-size: 18px;
+//       min-width: 60px;
+//     }
+
+//     .bg-open {
+//       background-color: #FFEFD5 !important;
+//       color: black;
+//     }
+
+//     .bg-overdue {
+//       background-color: #FFD7D7 !important;
+//       color: black;
+//     }
+
+//     .bg-closed {
+//       background-color: #E0FFEF !important;
+//       color: black;
+//     }
+
+//     .bg-cancelled {
+//       background-color: #E6F3FF !important;
+//       color: black;
+//     }
+//   }
+// }

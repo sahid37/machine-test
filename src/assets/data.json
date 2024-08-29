@@ -1,0 +1,85 @@
+{
+    "filterOptions": {
+      "date": ["Select Date", "2024-01-01", "2024-02-01"],
+      "reportTypes": ["Select Report Type", "Inspection", "Audit"],
+      "actions": ["Select Action", "Preventive Action", "Corrective Action"]
+    },
+    "summary": {
+      "status": {
+        "open": 120,
+        "overdue": 37,
+        "closed": 52,
+        "cancelled": 14
+      },
+      "totalFindings": {
+        "count": 370,
+        "increase": "10% increase in findings YTD"
+      },
+      "reportsNotLinked": {
+        "count": 1270,
+        "decrease": "23% count decreased"
+      },
+      "dueIn": {
+        "count": 32,
+        "increase": "550 count increasing yearly"
+      }
+    },
+    "tableData": [
+      {
+        "vesselOffice": "Alpha",
+        "reportType": "Near Miss",
+        "referenceNo": "AMR/NMIS/2023/016",
+        "action": "Preventive Action",
+        "actionDescription": "3.A Near Miss, Near Death, N...",
+        "raisedOn": "06-Jun-2023",
+        "raisedBy": "MariApps Admin",
+        "dueDate": "04-Sep-2023",
+        "vesselRespondent": "Captain"
+    },
+    {
+        "vesselOffice": "Alpha",
+        "reportType": "Near Miss",
+        "referenceNo": "AMR/NMIS/2023/S2",
+        "action": "Preventive Action",
+        "actionDescription": "2. This Makes Transfer Of C...",
+        "raisedOn": "07-Mar-2023",
+        "raisedBy": "Master",
+        "dueDate": "07-Mar-2023",
+        "vesselRespondent": ""
+    },
+    {
+        "vesselOffice": "Alpha",
+        "reportType": "Safety Meeting",
+        "referenceNo": "AMR/SM/2023/073",
+        "action": "SBM Action",
+        "actionDescription": "1. The Administration May ...",
+        "raisedOn": "06-Jun-2023",
+        "raisedBy": "",
+        "dueDate": "06-Jun-2023",
+        "vesselRespondent": ""
+    },
+    {
+        "vesselOffice": "Alpha",
+        "reportType": "Inspection/Audit",
+        "referenceNo": "AMR/SVI/2023/12408",
+        "action": "Corrective Action",
+        "actionDescription": "1.1. Paint Is Done",
+        "raisedOn": "06-Aug-2023",
+        "raisedBy": "MariAppsAdmin",
+        "dueDate": "05-Aug-2023",
+        "vesselRespondent": ""
+    },
+    {
+        "vesselOffice": "Alpha",
+        "reportType": "Inspection/Audit",
+        "referenceNo": "AMR/NMIS/2023/018",
+        "action": "Corrective Action",
+        "actionDescription": "1.1. Informed All Crew To ...",
+        "raisedOn": "10-Aug-2023",
+        "raisedBy": "MariAppsAdmin",
+        "dueDate": "10-Aug-2023",
+        "vesselRespondent": "Biju Binto"
+    }
+    ]
+  }
+  
